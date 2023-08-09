@@ -1,0 +1,31 @@
+15) Write a R program to create three vectors numeric data, character data and logical data. Display 
+the content of the vectors and their type.
+numeric_vector<-c(1,2,3,4)
+character_vector<-c("a","b","c","d")
+logical_vector<-c(TRUE,FALSE,TRUE,FALSE)
+print("NUMERIC VECTOR:")
+print(numeric_vector)
+print("CHARACTER VECTOR:")
+print(character_vector)
+print("LOGICAL VECTOR:")
+print(logical_vector)
+print("Type of numeric vector:")
+print(typeof(numeric_vector))
+print("Type of character vector:")
+print(typeof(character_vector))
+print("Type of logical vector:")
+print(typeof(logical_vector))
+
+OUTPUT:
+ "NUMERIC VECTOR:"
+1 2 3 4
+"CHARACTER VECTOR:"
+"a" "b" "c" "d"
+"LOGICAL VECTOR:"
+TRUE FALSE  TRUE FALSE
+"Type of numeric vector:"
+"double"
+"Type of character vector:"
+"character"
+"Type of logical vector:"
+"logical"
