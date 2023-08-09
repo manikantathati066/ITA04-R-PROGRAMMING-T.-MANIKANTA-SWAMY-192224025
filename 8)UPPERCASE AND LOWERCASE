@@ -1,0 +1,13 @@
+8) Write a R program to extract first 10 english letter in lower case and last 10 letters in upper case 
+and extract letters between 22nd to 24th letters in upper case.
+first_10_lower<-letters[1:10]
+last_10_upper<-toupper(letters[17:26])
+letters_between_22_24<-toupper(letters[22:24])
+cat("First 10 lower:",first_10_lower,"\n")
+cat("Last 10 upper:",last_10_upper,"\n")
+cat("Numbers between 22 and 24 upper:",letters_between_22_24,"\n")
+
+OUTPUT:
+First 10 lower: a b c d e f g h i j 
+Last 10 upper: Q R S T U V W X Y Z 
+Numbers between 22 and 24 upper: V W X 
