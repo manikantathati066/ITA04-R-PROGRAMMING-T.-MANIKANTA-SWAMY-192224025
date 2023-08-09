@@ -1,0 +1,12 @@
+13) Write a R program to create a list of random numbers in normal distribution and count 
+occurrences of each value.
+random_numbers<-rnorm(10,mean = 50,sd=10)
+cat(random_numbers)
+table_of_occurence<-table(random_numbers)
+cat(table_of_occurence)
+
+OUTPUT:
+cat(random_numbers)
+33.10765 63.38648 60.99097 49.74749 56.1213 56.55133 55.52482 75.86913 41.49346 60.1343
+> cat(table_of_occurence)
+1 1 1 1 1 1 1 1 1 1
