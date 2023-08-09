@@ -1,0 +1,7 @@
+4) Write a R program to create a vector which contains 10 random integer values between -50 and 
++50.
+random_vector<-sample(-50:50,10,replace = TRUE)
+cat("Random vector:",random_vector,"\n")
+
+OUTPUT:
+Random vector: 31 19 -44 18 28 -22 -8 -25 42 -45
