@@ -1,0 +1,10 @@
+random_sample <- sample(LETTERS, 20, replace = TRUE)
+
+# Create a factor from the random sample
+random_factor <- factor(random_sample)
+
+# Extract five unique levels from the factor
+selected_levels <- unique(random_factor)[1:5]
+
+# Print the selected levels
+print(selected_levels)
