@@ -1,0 +1,32 @@
+# Load the Iris dataset
+data("iris")
+
+# (i) Find dimension, Structure, Summary statistics, Standard Deviation of all features.
+# Dimension of the dataset
+dim(iris)
+
+# Structure of the dataset
+str(iris)
+
+# Summary statistics
+summary(iris)
+
+# Standard Deviation of all features
+apply(iris[, 1:4], 2, sd)
+
+# (ii) Find mean and standard deviation of features grouped by species
+aggregate(iris[, 1:4], by = list(species = iris$Species), FUN = function(x) c(mean = mean(x), sd = sd(x)))
+
+# (iii) Find quantile value of sepal width and length
+quantile(iris$Sepal.Width)
+quantile(iris$Sepal.Length)
+
+# (iv) Create a new data frame named iris1 with a new column "Sepal.Length.Cate" that categorizes "Sepal.Length" by quantile
+iris1 <- iris
+iris1$Sepal.Length.Cate <- cut(iris1$Sepal.Length, breaks = quantile(iris1$Sepal.Length), labels = FALSE, include.lowest = TRUE)
+
+# (v) Average value of numerical variables by Species and Sepal.Length.Cate
+aggregate(iris1[, 1:4], by = list(Species = iris1$Species, Sepal.Length.Cate = iris1$Sepal.Length.Cate), FUN = mean)
+
+# (vi) Average mean value of numerical variables by Species and Sepal.Length.Cate
+aggregate(iris1[, 1:4], by = list(Species = iris1$Species, Sepal.Length.Cate = iris1$Sepal.Length.Cate), FUN = function(x) mean(x, na.rm = TRUE))
