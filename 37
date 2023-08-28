@@ -1,0 +1,24 @@
+# Fit the multiple regression model
+model <- lm(weight ~ Time + Diet, data = data)
+
+# Display model summary
+summary(model)
+# Create a new data frame for prediction
+new_data <- data.frame(Time = 10, Diet = 1)
+
+# Predict weight using the model
+predicted_weight <- predict(model, newdata = new_data)
+
+# Display the predicted weight
+print(predicted_weight)
+# Make predictions for the entire dataset
+predicted_weights <- predict(model, newdata = data)
+
+# Calculate the residuals (errors)
+residuals <- data$weight - predicted_weights
+
+# Calculate the Mean Squared Error (MSE)
+mse <- mean(residuals^2)
+
+# Display the MSE
+print(mse)
