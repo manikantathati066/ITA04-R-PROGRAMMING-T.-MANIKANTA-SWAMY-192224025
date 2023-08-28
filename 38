@@ -1,0 +1,62 @@
+# Load the Titanic dataset
+data("Titanic")
+
+# Convert Titanic data to a data frame
+titanic_df <- as.data.frame(Titanic)
+
+# Create a bar chart
+bar_plot_class <- ggplot(titanic_df, aes(x = Class, y = Freq, fill = Survived)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Survival by Passenger Class",
+       x = "Passenger Class",
+       y = "Frequency") +
+  scale_fill_manual(values = c("red", "green"), labels = c("Not Survived", "Survived")) +
+  theme_minimal()
+
+# Display the plot
+print(bar_plot_class)
+
+
+# B
+# Load the Titanic dataset
+data("Titanic")
+
+# Convert Titanic data to a data frame
+titanic_df <- as.data.frame(Titanic)
+
+# Filter the data for survived passengers
+survived_df <- subset(titanic_df, Survived == "Yes")
+
+# Create a bar chart with gender differentiation
+bar_plot_gender <- ggplot(survived_df, aes(x = Class, y = Freq, fill = Sex)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Survival by Passenger Class and Gender",
+       x = "Passenger Class",
+       y = "Frequency") +
+  scale_fill_manual(values = c("blue", "pink"), labels = c("Male", "Female")) +
+  theme_minimal()
+
+# Display the plot
+print(bar_plot_gender)
+
+
+# c 
+# Load the Titanic dataset
+data("Titanic")
+
+# Convert Titanic data to a data frame
+titanic_df <- as.data.frame(Titanic)
+
+# Filter out NAs in Age
+titanic_age <- na.omit(titanic_df)
+
+# Create a bar plot to show the distribution of ages
+age_dist_bar <- ggplot(titanic_age, aes(x = Age)) +
+  geom_bar(fill = "lightblue", color = "black") +
+  labs(title = "Distribution of Age",
+       x = "Age",
+       y = "Frequency") +
+  theme_minimal()
+
+# Display the plot
+print(age_dist_bar)
