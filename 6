@@ -1,0 +1,34 @@
+[12:17 PM, 8/8/2023] DINESH R PRO: # Function to find all prime numbers up to a given limit using the Sieve of Eratosthenes
+sieve_of_eratosthenes <- function(limit) {
+  primes <- rep(TRUE, limit + 1)
+  primes[1] <- FALSE  # 1 is not a prime
+  
+  for (num in 2:sqrt(limit)) {
+    if (primes[num]) {
+      primes[num^2:(limit+1):num] <- FALSE
+    }
+  }
+  
+  return(which(primes))
+}
+
+# Specify the limit
+limit <- 100
+
+# Get the prime numbers up to the specified limit
+prime_numbers <- sieve_of_eratosthenes(limit)
+
+# Print the prime numbers
+cat("Prime numbers up to", limit, ":", prime_numbers, "\n")
+[12:17 PM, 8/8/2023] DINESH R PRO: # Loop through numbers from 1 to 100
+for (num in 1:100) {
+  if (num %% 3 == 0 && num %% 5 == 0) {
+    cat("FizzBuzz", "\n")
+  } else if (num %% 3 == 0) {
+    cat("Fizz", "\n")
+  } else if (num %% 5 == 0) {
+    cat("Buzz", "\n")
+  } else {
+    cat(num, "\n")
+  }
+}
