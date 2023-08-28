@@ -1,0 +1,35 @@
+\library(ggplot2)
+library(gridExtra)
+
+# Sample data (replace this with your actual data)
+data <- data.frame(
+  weight = c(150, 160, 140, 130, 155, 145),
+  Diet = c(1, 2, 1, 3, 2, 1),
+  Time = c(30, 40, 25, 50, 35, 28)
+)
+
+# Box Plot for "weight" grouped by "Diet"
+box_plot <- ggplot(data, aes(x = factor(Diet), y = weight, fill = factor(Diet))) +
+  geom_boxplot() +
+  labs(title = "Box Plot of Weight Grouped by Diet",
+       x = "Diet",
+       y = "Weight") +
+  scale_fill_discrete(name = "Diet")
+
+# Histogram for "weight" in Diet-1 Category
+hist_plot <- ggplot(subset(data, Diet == 1), aes(x = weight)) +
+  geom_histogram(binwidth = 5, fill = "blue", color = "black") +
+  labs(title = "Histogram of Weight in Diet-1 Category",
+       x = "Weight",
+       y = "Frequency")
+
+# Scatter Plot for "weight" vs "Time" Grouped by "Diet"
+scatter_plot <- ggplot(data, aes(x = weight, y = Time, color = factor(Diet))) +
+  geom_point() +
+  labs(title = "Scatter Plot of Weight vs Time Grouped by Diet",
+       x = "Weight",
+       y = "Time",
+       color = "Diet")
+
+# Arrange plots in a grid layout
+grid.arrange(box_plot, hist_plot, scatter_plot, ncol = 2)
