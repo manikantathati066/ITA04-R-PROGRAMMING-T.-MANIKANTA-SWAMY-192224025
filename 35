@@ -1,0 +1,36 @@
+library(dplyr)
+library(tidyr)
+
+# Load the ChickWeight dataset (if not already loaded)
+data("ChickWeight")
+
+# (i) Order the data frame by 'weight' in ascending order, grouped by 'Diet'
+ordered_data <- ChickWeight %>%
+  arrange(Diet, weight) %>%
+  group_by(Diet) %>%
+  slice_tail(n = 6)
+
+# (ii) a. Melting the data
+melted_data <- ChickWeight %>%
+  select(Chick, Time, Diet, weight) %>%
+  gather(key = Measurement, value = Weight, -Chick, -Time, -Diet)
+
+# b. Performing cast to get mean weight grouped by Diet
+mean_weight_by_diet <- melted_data %>%
+  group_by(Diet) %>%
+  summarise(mean_weight = mean(Weight, na.rm = TRUE))
+
+# c. Performing cast to get mode weight grouped by Diet
+mode_weight_by_diet <- melted_data %>%
+  group_by(Diet) %>%
+  summarise(mode_weight = as.numeric(names(table(Weight)[table(Weight) == max(table(Weight))])))
+
+# Print the results
+print("Last 6 records of ordered data:")
+print(ordered_data)
+
+print("Mean weight grouped by Diet:")
+print(mean_weight_by_diet)
+
+print("Mode weight grouped by Diet:")
+print(mode_weight_by_diet)
