@@ -1,0 +1,24 @@
+# Create a data frame based on the provided table
+data <- data.frame(
+  Month = 1:12,
+  Spends = c(1000, 4000, 5000, 4500, 3000, 4000, 9000, 11000, 15000, 12000, 7000, 3000),
+  Sales = c(9914, 40487, 54324, 50044, 34719, 42551, 94871, 118914, 158484, 131348, 78504, 36284)
+)
+
+# Display the data frame
+print(data)
+
+# Fit the regression model
+model <- lm(Sales ~ Spends, data = data)
+
+# Display model summary
+summary(model)
+
+# Create a new data frame for prediction
+new_data <- data.frame(Spends = 13500)
+
+# Predict sales using the model
+predicted_sales <- predict(model, newdata = new_data)
+
+# Display the predicted sales
+print(predicted_sales)
