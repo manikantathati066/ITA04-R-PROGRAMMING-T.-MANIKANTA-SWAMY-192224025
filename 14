@@ -1,0 +1,8 @@
+sample_data <- data.frame(
+  Name = c("Alice", "Bob", "Charlie", "David"),
+  Age = c(25, 30, 22, 28),
+  City = c("New York", "Los Angeles", "Chicago", "Houston")
+)
+file_path <- "sample_data.csv"
+
+print(data)
