@@ -1,0 +1,36 @@
+# Load the required librarieslibrary(dplyr)
+library(ggplot2)
+library(missForest)  # For imputing missing values
+library(caret)       # For modeling
+
+# Load the airquality dataset
+data("airquality")
+
+# (i) Handle missing values
+missing_threshold <- nrow(airquality) * 0.10  # 10% threshold
+
+# Function to replace missing values with mean
+replace_with_mean <- function(column) {
+  column[is.na(column)] <- mean(column, na.rm = TRUE)
+  return(column)
+}
+
+# Loop through features, either replacing missing values with mean or dropping them
+for (col in names(airquality)) {
+  if (sum(is.na(airquality[[col]])) > 0) {
+    if (sum(is.na(airquality[[col]])) <= missing_threshold) {
+      airquality[[col]] <- replace_with_mean(airquality[[col]])
+    } else {
+      airquality <- airquality[!is.na(airquality[[col]]), ]
+    }
+  }
+}
+
+# (ii) Apply linear regression using Least Squares Method on "Ozone" and "Solar.R"
+lm_model <- lm(Ozone ~ Solar.R, data = airquality)
+
+# (iii) Plot Scatter plot with regression line
+ggplot(airquality, aes(x = Solar.R, y = Ozone)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "red") +
+  labs(x = "Solar Radiation", y = "Ozone Level", title = "Scatter Plot with Regression Line")
