@@ -1,0 +1,22 @@
+library(caret)
+library(dplyr)
+library(e1071)
+
+# Load the iris dataset
+data(iris)
+set.seed(123) 
+# For reproducibility
+trainIndex <- createDataPartition(iris$Species, p = 0.8, list = FALSE)
+trainData <- iris[trainIndex, ]
+testData <- iris[-trainIndex, ]
+# Create the logistic regression model
+model <- glm(Species ~ Petal.Length + Petal.Width, data = trainData, family = "binomial")
+
+# Train the model
+trainData$predictedSpecies <- predict(model, newdata = trainData, type = "response")
+testData$predictedSpecies <- predict(model, newdata = testData, type = "response")
+# Create the confusion matrix
+confusionMatrixData <- table(Actual = testData$Species, Predicted = ifelse(testData$predictedSpecies > 0.5, "versicolor", "setosa"))
+
+# Print the confusion matrix
+print(confusionMatrixData)
